@@ -103,5 +103,6 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void testPeriodic() {
+		sh.set(j.getRawAxis(4));
 	}
 }
