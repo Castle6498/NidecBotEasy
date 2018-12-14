@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team6498.robot;
 
+import javax.swing.plaf.synth.SynthStyle;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -42,11 +44,11 @@ public class Robot extends IterativeRobot {
 		
 		tl = new NidecBrushless(Constants.kFeederEnablepwmPort,Constants.kFeederTriggerOneMXPPort);
 		
-		tr = new NidecBrushless(22,Constants.kFeederTriggerTwoMXPPort);
+		tr = new NidecBrushless(16,Constants.kFeederTriggerTwoMXPPort);
 		
-		acLinear = new LinearActuator();
+		acLinear = new LinearActuator(8);
 		
-		hood = new LinearActuator();
+		hood = new LinearActuator(7);
 		
 		j = new Joystick(0);
 	}
@@ -57,11 +59,11 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		//BASE ----------------------------
-		b.arcadeDrive(-j.getY(), j.getX());
+		b.arcadeDrive(-j.getY()*.5, j.getX()*.5);
 		//TODO later change to curvature drive :D ^^^
 		
 		//TRIGGER -------------------------
-		if(j.getRawButton(6)) {
+		if(j.getRawButton(2)) {
 			tr.set(1);
 			tl.set(-1);
 		}else {
@@ -70,31 +72,32 @@ public class Robot extends IterativeRobot {
 		}
 				
 		//RAISE/LOWER ACCUMULATOR----------
-		if(j.getRawButton(10)) {
+		if(j.getRawButton(7)) {
 			acLinear.set(1);
-		}else if(j.getRawButton(7)) {
+		}else if(j.getRawButton(8)) {
 			acLinear.set(0);
 		}
 		
 		
 		//ACCUMULATOR ----------------------
-		if(j.getRawButton(11)) {
+		if(j.getRawButton(9)) {
 			ac.set(1);
-		}else if(j.getRawButton(8)){
+		}else if(j.getRawButton(10)){
 			ac.set(0);
 		}
 		
 		
 		//HOOD-------------------------------
-		hood.set(j.getRawAxis(4));
+		hood.set((j.getRawAxis(3)+1)/2);
 		
 		//SHOOTER----------------------------
-		if(j.getRawButton(4)) {
-			sh.set(-.8);
-		}else if(j.getRawButton(2)){
+		if(j.getRawButton(3)) {
+			sh.set(-.75);
+		}else if(j.getRawButton(4)){
 			sh.set(0);
 		}
-		
+		//sh.set(j.getRawAxis(3));
+		System.out.println("Shooter: "+sh.get()+" RPM: "+sh.getSpeed());
 		
 		
 		

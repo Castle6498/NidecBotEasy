@@ -127,12 +127,12 @@ public class Constants {
     
     
     //SHOOTER --------------------------------------------------------------
-    public static final int kShooterDIOpwmPort = 3;
-    public static final int kShooterEncoderAPort = 4;
-    public static final int kShooterEncoderBPort = 5;
-    public static final int kShooterDirectionpwmPort = 1;
+    public static final int kShooterDIOpwmPort = 6;
+    public static final int kShooterEncoderAPort = 7;
+    public static final int kShooterEncoderBPort = 8;
+    public static final int kShooterDirectionpwmPort = 3;
     
-    public static final int kShooterEnablepwmPort = 2;
+    public static final int kShooterEnablepwmPort = 4;
     
     public static final double kFlywheelOnTargetTolerance = 5;
     
