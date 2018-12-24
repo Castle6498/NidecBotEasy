@@ -64,8 +64,8 @@ public class Robot extends IterativeRobot {
 		
 		//TRIGGER -------------------------
 		if(j.getRawButton(2)) {
-			tr.set(1);
-			tl.set(-1);
+			tr.set(-1);
+			tl.set(1);
 		}else {
 			tr.set(0);
 			tl.set(0);
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 				
 		//RAISE/LOWER ACCUMULATOR----------
 		if(j.getRawButton(7)) {
-			acLinear.set(1);
+			acLinear.set(.6);
 		}else if(j.getRawButton(8)) {
 			acLinear.set(0);
 		}
@@ -88,15 +88,15 @@ public class Robot extends IterativeRobot {
 		
 		
 		//HOOD-------------------------------
-		hood.set((j.getRawAxis(3)+1)/2);
+	//	hood.set((j.getRawAxis(3)+1)/2);
 		
-		//SHOOTER----------------------------
+	/*	//SHOOTER----------------------------
 		if(j.getRawButton(3)) {
-			sh.set(-.75);
+			sh.set(-.5);
 		}else if(j.getRawButton(4)){
 			sh.set(0);
-		}
-		//sh.set(j.getRawAxis(3));
+		}*/
+		sh.set(j.getRawAxis(3));
 		System.out.println("Shooter: "+sh.get()+" RPM: "+sh.getSpeed());
 		
 		
@@ -106,6 +106,7 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void testPeriodic() {
-		sh.set(j.getRawAxis(4));
+		sh.set(j.getRawAxis(3));
+		System.out.println(j.getRawAxis(3));
 	}
 }
